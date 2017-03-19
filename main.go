@@ -26,7 +26,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/ahl5esoft/golang-underscore"
-	"github.com/eriklupander/dvizz/comms"
+	"github.com/zigit/dvizz/comms"
 	"github.com/fsouza/go-dockerclient"
 	"sync"
 	"time"
