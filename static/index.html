@@ -263,7 +263,7 @@
                   });
 
                   // START TASKS
-                  $.getJSON("serverUrl + "/tasks", null, function(data) {
+                  $.getJSON(serverUrl + "/tasks", null, function(data) {
                       $.each(data, function(index, item) {
                           if (item.DesiredState !== 'running') {
                               return;
