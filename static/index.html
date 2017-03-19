@@ -274,7 +274,7 @@
               $.getJSON(serverUrl + "/services", null, function(data) {
 
                   $.each(data, function(index, item) {
-                      if (!(item.Spec.Name.includes(suffix) && notNull(suffix))) {
+                      if (!item.Spec.Name.includes(suffix) && notNull(suffix)) {
                               return;
                       }
                       services.push({"id": item.ID, "name": item.Spec.Name})
