@@ -71,8 +71,26 @@
 <body>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script>
-      var width = 3170,  // width and height of the SVG canvas
-          height = 1728;
+      function getParameterByName(name, url) {
+        if (!url) {
+          url = window.location.href;
+          }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+    
+      var width = parseInt(getParameterByName('width', ''));
+      console.log(width);
+      var height = parseInt(getParameterByName('height', ''));
+      console.log(height);    
+      if isNaN(width) || isNaN(height) {
+        width = 1280,  // default width and height of the SVG canvas
+        height = 1728;
+      }  
       // A list of node objects.  We represent each node as {id: "name"}, but the D3
       // system will decorate the node with addtional fields, notably x: and y: for
       // the force layout and index" as part of the binding mechanism.
@@ -94,17 +112,6 @@
           .attr("width", width)
           .attr("height", height);
     
-      function getParameterByName(name, url) {
-        if (!url) {
-          url = window.location.href;
-          }
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-      }
 
       var suffix = getParameterByName('suffix', '');
       console.log(suffix);
