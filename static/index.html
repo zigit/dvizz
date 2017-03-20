@@ -87,7 +87,7 @@
       console.log(width);
       var height = parseInt(getParameterByName('height', ''));
       console.log(height);    
-      if isNaN(width) || isNaN(height) {
+      if (isNaN(width) || isNaN(height)) {
         width = 1280,  // default width and height of the SVG canvas
         height = 1728;
       }  
