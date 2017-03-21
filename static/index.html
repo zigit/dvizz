@@ -29,13 +29,13 @@
   }
 
   circle.node {
-    fill: #aaa;
+    fill: MistyRose;
     stroke: #333;
     stroke-width: 1.5px;
   }
 
   circle.node.service {
-    fill: #fbb;
+    fill: LightYellow;
     stroke: #333;
     stroke-width: 1.5px;
   }
@@ -59,7 +59,7 @@
   }
 
   text {
-    font: 10px sans-serif;
+    font: 20px sans-serif;
     pointer-events: none;
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
   }
@@ -105,17 +105,27 @@
           .links(links)
           .linkDistance(80)
           .charge(-800)
-          .size([width, height])
+//          .size([width, height])
           .on("tick", tick);
       // add an SVG element inside the DOM's BODY element
       var svg = d3.select("body").append("svg")
-          .attr("width", width)
-          .attr("height", height);
-    
+          .attr("width", "100%")
+          .attr("height", "100%");
+      // set background color of the canvas
+      svg.append("rect")
+          .attr("width", "100%")
+          .attr("height", "100%")
+          .attr("fill", "AliceBlue");
+  resize();
+  d3.select(window).on("resize", resize);
 
       var suffix = getParameterByName('suffix', '');
       console.log(suffix);
-    
+    function resize() {
+    width = window.innerWidth, height = window.innerHeight;
+    svg.attr("width", width).attr("height", height);
+    force.size([width, height]).resume();
+  }  
       function update_graph() {
 
           // Per-type markers, as they don't inherit styles.
